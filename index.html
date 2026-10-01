@@ -236,8 +236,28 @@ button,.hub-card{touch-action:manipulation;-webkit-tap-highlight-color:transpare
 }
 
 @media (max-width:720px){
-  body{overflow:hidden}
+  /* iOS/Safari: use native document scrolling instead of a nested scroll area.
+     This avoids the page becoming stuck when the viewport uses dynamic height. */
+  html{
+    height:auto;
+    min-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+  }
+  body{
+    height:auto;
+    min-height:100%;
+    min-height:100dvh;
+    overflow-x:hidden;
+    overflow-y:auto;
+    touch-action:pan-y;
+    overscroll-behavior-y:auto;
+  }
   #hub{
+    height:auto;
+    min-height:100dvh;
+    overflow:visible;
+    touch-action:pan-y;
     padding:calc(18px + env(safe-area-inset-top,0px)) 4vw calc(16px + env(safe-area-inset-bottom,0px));
   }
   .hub-top{margin-bottom:4px}
